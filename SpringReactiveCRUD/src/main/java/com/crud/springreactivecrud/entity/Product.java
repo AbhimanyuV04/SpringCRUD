@@ -12,10 +12,13 @@ import org.springframework.data.relational.core.mapping.Table;
 @AllArgsConstructor
 @Data
 public class Product {
+
     @Id
     private Integer id;
+
     @Column
     private String name;
+
     @Column
     private String price;
 

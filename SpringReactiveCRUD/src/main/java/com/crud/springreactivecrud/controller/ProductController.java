@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.random.RandomGenerator;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -19,17 +21,18 @@ public class ProductController {
         return productRepo.findAll();
     }
 
-    @GetMapping("/product/{id]")
+    @GetMapping("/{id}")
     public Mono<Product> getProductById(@PathVariable int id) {
         return productRepo.findById(id);
     }
 
     @PostMapping("/insert")
     public void insertProduct(@RequestBody Product product) {
+        product.setId(RandomGenerator.getDefault().nextInt());
         productRepo.save(product);
     }
 
-    @PutMapping("/product/{id]")
+    @PutMapping("/{id}")
     public Mono<Product> updateProductById(@RequestBody Product product, @PathVariable int id) {
         return productRepo.findById(id)
                 .map(
@@ -44,7 +47,6 @@ public class ProductController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteProductById(@PathVariable int id) {
-
         productRepo.deleteById(id);
     }
 
