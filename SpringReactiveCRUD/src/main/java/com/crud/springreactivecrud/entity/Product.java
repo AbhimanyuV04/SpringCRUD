@@ -16,10 +16,10 @@ public class Product {
     @Id
     private Integer id;
 
-    @Column
+    @Column("name")
     private String name;
 
-    @Column
+    @Column("price")
     private String price;
 
 }
